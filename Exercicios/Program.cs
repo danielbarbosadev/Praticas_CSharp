@@ -20,6 +20,7 @@ if (int.TryParse(Console.ReadLine()!, out int idade))
    """);
 }
 else Console.WriteLine("Informação inválida (EX 1), o resumo não será preciso.");
+Console.WriteLine();
 
 // Exercicio 02 - Calculando uma compra
 
@@ -41,14 +42,13 @@ if (decimal.TryParse(Console.ReadLine()!, out decimal quantidade))
       Produto escolhido: {nomeProduto}
       Preço Unitário: {preco:c2}
       Quantidade: {quantidade}
-      Exercicio 03 - Classificação de notas
       Valor Final: {valorTotal: c2}
       """);
    }
    else Console.WriteLine("Informação inválida (EX 2), o resumo não será preciso.");
 }
 else Console.WriteLine("Informação inválida (EX 2), o resumo não será preciso.");
-
+Console.WriteLine();
 
 // Exercício 3 — Classificação de notas
 
@@ -81,6 +81,7 @@ if (int.TryParse(Console.ReadLine()!, out int notaAluno) && !(notaAluno > 10 || 
    """);
 }
 else Console.WriteLine("Nota inválida, tente novamente!");
+Console.WriteLine();
 
 // Exercício 4 — Tabuada
 
@@ -91,6 +92,7 @@ if (int.TryParse(Console.ReadLine()!, out int numero))
       Console.Write($"{numero} x {i} = {numero * i} \n");
 }
 else { Console.WriteLine("Número invalido. Tente novamente!"); }
+Console.WriteLine();
 
 // Exercício 5 — Adivinhe o número
 
@@ -133,6 +135,7 @@ do
    }
 
 } while (numeroEscolhido != numeroSorteado);
+Console.WriteLine();
 
 // Exercício 6 — Calculadora com métodos
 
@@ -198,6 +201,7 @@ int multiplicar(int num1, int num2)
 
    return resultado;
 }
+ Console.WriteLine();
 
 // Exercício 7 — Cadastro de notas em um array
 
@@ -271,8 +275,99 @@ Maior número digitado: {maiorNumero}
 
 Console.WriteLine();
 
+// Exercício 9 e 10 — Lista de produtos - Busca de produtos
+int opcao = 0;
+bool opcaoEscolhida = false;
+List<String> produtos = new List<string>();
 
+do
+{
+  if (!opcaoEscolhida)
+  {
+      Console.Write
+      ("""
+      === ESCOLHA ===
+      [1] Adicionar produto
+      [2] Exibir Lista 
+      [3] Remover Produto
+      [4] Verificar Produto
+      [5] Sair
+      Digite aqui sua escolha: 
+      """);
+      if (!int.TryParse(Console.ReadLine()!, out opcao) || opcao > 5)
+      {
+         Console.WriteLine("[ERRO] Escolha inválida. Tente novamente!");
+         break;
+      }
+  }
 
+  Console.WriteLine();
+
+  opcaoEscolhida = true;
+  string produto;
+
+  switch (opcao)
+  {
+   case 1:
+      opcaoEscolhida = false;
+      Console.Write("Adicione o produto: ");
+      produto = Console.ReadLine()!;
+      
+      produtos.Add(produto);
+   break;
+
+   case 2:
+   opcaoEscolhida = false;
+
+   Console.WriteLine("LISTA COMPLETO DOS PRODUTOS:");
+   foreach (var listaProduto in produtos)
+   {
+      Console.WriteLine($"- {listaProduto}");
+   }
+   break;
+
+   case 3:
+      opcaoEscolhida = false;
+
+      Console.WriteLine("ESCOLHA QUAL PRODUTO IRÁ SER REMOVIDO:");
+      foreach (var listaProduto in produtos)
+      {
+         Console.WriteLine($"- {listaProduto}");
+      }
+      Console.Write("Digite o nome do produto aqui: ");
+      string removerProduto = Console.ReadLine()!;
+
+      produtos.Remove(removerProduto);
+      Console.WriteLine($"O produto {removerProduto} foi removido com sucesso!!");
+   break;
+
+   case 4:
+      opcaoEscolhida = false;
+
+      Console.Write("Digite o nome do produto que deseja procurar: ");
+      string produtoProcurado = Console.ReadLine()!;
+
+      string? produtoAchado =  produtos.Find(p => p.Equals(produtoProcurado, StringComparison.OrdinalIgnoreCase));
+
+      if (produtoAchado == null)
+      {
+         Console.WriteLine($"O Produto {produtoProcurado} não se encontra na lista.");
+         break;
+      }
+
+      Console.WriteLine($"O Produto {produtoProcurado} está presente na lista");
+   break;
+
+   case 5:
+      Console.WriteLine("SAINDO...");
+   break;
+
+   default:
+      Console.WriteLine("[ERRO] Opção inválida");
+   break;
+  }
+   
+} while (opcao != 5);
 
 
 
