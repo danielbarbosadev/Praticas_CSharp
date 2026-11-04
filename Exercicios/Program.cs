@@ -42,7 +42,7 @@ if (decimal.TryParse(Console.ReadLine()!, out decimal quantidade))
       Produto escolhido: {nomeProduto}
       Preço Unitário: {preco:c2}
       Quantidade: {quantidade}
-      Valor Final: {valorTotal: c2}
+      Valor Final: {valorTotal:c2}
       """);
    }
    else Console.WriteLine("Informação inválida (EX 2), o resumo não será preciso.");
